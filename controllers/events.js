@@ -23,14 +23,14 @@ const createEvent = async (req = request, res = response) => {
         event.user = req.uid;
         const savedEvent = await event.save();
 
-        res.status(200).json(
+        return res.status(200).json(
             {
                 ok: true,
                 event: savedEvent,
             }
         );
     } catch (error) {
-        res.status(500).json(
+        return res.status(500).json(
             {
                 ok: false,
                 msg: 'Hable con el adm'
@@ -52,8 +52,6 @@ const updateEvent = async (req, res = response) => {
                 }
             );
         }
-
-        //Evaluar si es la misma persona
 
         if (event.user.toString() !== uid) {
             return res.status(401).json(
@@ -79,7 +77,6 @@ const updateEvent = async (req, res = response) => {
             }
         );
     } catch (error) {
-        console.log(error);
         res.status(500).json(
             {
                 ok: false,
@@ -107,8 +104,6 @@ const deleteEvent = async (req, res = response) => {
             );
         }
 
-        //Evaluar si es la misma persona
-
         if (event.user.toString() !== uid) {
             return res.status(401).json(
                 {
@@ -127,7 +122,6 @@ const deleteEvent = async (req, res = response) => {
         );
 
     } catch (error) {
-        console.log(error);
         res.status(500).json(
             {
                 ok: false,

@@ -18,14 +18,14 @@ router.get('/', getEvents);
 
 router.post('/', [
     check('title', 'The field title is required').not().isEmpty(),
-    check('start', 'The date of start is required').isDate(),
+    check('start', 'The date of start is required').custom(isDate),
     check('end', 'The date of end is required').custom(isDate),
     fieldValidator
 ], createEvent)
 
 router.put('/:id', [
     check('title', 'The field title is required').not().isEmpty(),
-    check('start', 'The date of start is required').isDate(),
+    check('start', 'The date of start is required').custom(isDate),
     check('end', 'The date of end is required').custom(isDate),
     fieldValidator
 ], updateEvent)

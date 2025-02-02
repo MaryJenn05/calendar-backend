@@ -11,7 +11,7 @@ const { tokenValidator } = require('../middlewares/token-validator');
 const router = Router();
 
 router.post('/register',
-    [//Middlewates
+    [//Middlewares
         check('name', 'The field name is required').not().isEmpty(),
         check('email', 'The field email is required').isEmail(),
         check('password', 'The password is required').isLength({ min: 6 }),
